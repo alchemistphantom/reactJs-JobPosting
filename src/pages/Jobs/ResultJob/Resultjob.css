@@ -1,0 +1,101 @@
+.wrapper {
+  background: rgb(245, 241, 241);
+  width: 100%;
+}
+
+.header-wrapper {
+  background: white;
+}
+
+.search-content {
+  display: flex;
+  flex-direction: column;
+  font-size: 10px;
+  padding: 20px 20px;
+  width: 700px;
+}
+
+.btn-search {
+  border-radius: 20px;
+  border: 1px solid blue;
+  background: blue;
+  color: white;
+}
+
+.content-wrapper {
+  margin-top: 10px;
+  position: relative;
+}
+
+.page-text {
+  margin: 10px;
+  font-size: 13px;
+  color: grey;
+}
+
+Card {
+  margin: 0px;
+}
+
+.btn-apply {
+  padding: 10px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 25px;
+  background: blue;
+  border: 1px solid blue;
+  margin: 20px;
+  color: rgb(255, 255, 255);
+}
+
+.title-card {
+  padding: 0px 40px;
+}
+
+.link-sortby a {
+  font-size: 12px;
+  margin: 5px;
+}
+
+.content-description {
+  height: 500px;
+  overflow: scroll;
+}
+
+.content-fixed {
+  position: sticky;
+  top: 0px;
+  bottom: 0px;
+}
+
+.pagination {
+  margin-top: 25px;
+  margin: 10px 10px;
+}
+
+.pagination span {
+  cursor: pointer;
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: 1px solid #ddd;
+}
+
+.pagination span.active {
+  background-color: #0099ff;
+  color: white;
+  border: 1px solid #0099ff;
+}
+
+.auto {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.activeCard {
+  border: 1px solid blue;
+}
