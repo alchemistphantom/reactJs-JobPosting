@@ -4,6 +4,7 @@ import ModalAdd from "./ModalAdd";
 import DefaultModal from "../../component/DefaultModal";
 import SideBar from "./SideBar";
 import { Alert, Spinner } from "react-bootstrap";
+import ModalUpdate from "./ModalUpdate";
 const linkBase = "http://localhost:5000/company/";
 class Home extends Component {
   constructor(props) {
@@ -13,7 +14,15 @@ class Home extends Component {
       more: true,
       id: "",
       isLoading: false,
-      idModal: ""
+      idModal: "",
+      data: {
+        id: "",
+        name: "nama",
+        logo: "",
+        location: "",
+        description: ""
+      },
+      isUpdate: false
     };
   }
 
@@ -93,7 +102,15 @@ class Home extends Component {
       return <Alert variant="danger">Data tidak ditemukan</Alert>;
   };
 
+  handleUpdate = datas => {
+    this.setState({
+      data: datas,
+      isUpdate: true
+    });
+  };
+
   render() {
+    let no=1
     return (
       <div>
         <div className="wrapper">
@@ -146,15 +163,16 @@ class Home extends Component {
                   <div className="card-header">
                     <h3 className="card-title">Data Company</h3>
                   </div>
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    data-toggle="modal"
-                    data-target="#exampleModal"
-                  >
-                    <i className="fas fa-plus" color="white"></i>
-                    Tambah Company
-                  </button>
+                  {/* <button
+                      type="button"
+                      className="btn btn-primary"
+                      data-toggle="modal"
+                      data-target="#exampleModal"
+                    >
+                      <i className="fas fa-plus" color="white"></i>
+                      Tambah Company
+                    </button> */}
+
                   <div className="card-body">
                     <ModalAdd
                       modalTitle="Tambah Company"
@@ -183,7 +201,7 @@ class Home extends Component {
                           {this.state.companies.map((data, i) => {
                             return (
                               <tr key={i.toString()}>
-                                <td>{parseInt(i) + 1}</td>
+                                <td>{no++}</td>
                                 <td>{data.name}</td>
                                 <td>
                                   <img
@@ -211,7 +229,7 @@ class Home extends Component {
                                   </a>
                                 </td>
                                 <td colSpan={2}>
-                                  <td>
+                                  <span className="inline">
                                     <DefaultModal
                                       class="btn btn-danger"
                                       icon="fa fa-trash-alt"
@@ -224,29 +242,29 @@ class Home extends Component {
                                         this.delCompany(data.id);
                                       }}
                                     />
-                                  </td>
-                                  <button
-                                    type="button"
-                                    className="btn btn-success"
-                                    data-toggle="modal"
-                                    data-target={"#exampleModal" + data.id}
-                                    onClick={() => {
-                                      this.setState({
-                                        isModal: true
-                                      });
-                                    }}
-                                  >
-                                    <i className="fa fa-edit" color="white"></i>
-                                    Edit
-                                  </button>
-                                  <td>
-                                    <ModalAdd
-                                      modalTitle="Edit Company"
-                                      id={"EditModal" + data.id}
-                                      data={data.name}
-                                      show={this.state.isModal}
-                                    />
-                                  </td>
+                                    <button
+                                      type="button"
+                                      className="btn btn-success"
+                                      data-toggle="modal"
+                                      data-target={"#exampleModal" + data.id}
+                                      onClick={() => {
+                                        this.handleUpdate(data);
+                                      }}
+                                    >
+                                      <i
+                                        className="fa fa-edit"
+                                        color="white"
+                                      ></i>
+                                      Edit
+                                    </button>
+                                  </span>{" "}
+                                  <ModalUpdate
+                                    modalTitle="Tambah Company"
+                                    reGet={this.getCompanies}
+                                    id={"exampleModal" + data.id}
+                                    idComp={data.id}
+                                    data={data}
+                                  />
                                 </td>
                               </tr>
                             );

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Modal, Button } from "react-bootstrap";
 import Axios from "axios";
 const linkBase = "http://localhost:5000/company/";
 
@@ -12,14 +11,7 @@ class ModalAdd extends Component {
       location: "",
       logo: null,
       logoName: "",
-      isLoading: false,
-      data: {
-        id: "coba",
-        name: "",
-        logo: "",
-        location: "",
-        description: ""
-      }
+      isLoading: false
     };
   }
 
@@ -52,23 +44,27 @@ class ModalAdd extends Component {
     formData.append("description", this.state.description);
     formData.append("logo", this.state.logo);
     // console.log(formData);
-    await Axios({
-      url: linkBase,
-      data: formData,
-      method: "post",
-      headers: {
-        "content-type": "multipart/form-data"
-      }
-    })
-      .then(res => {
-        // console.log(res);
-        this.props.reGet();
-        this.clear();
-        // console.log("name", this.state.logoName);
+    if (this.props.isUpdate) {
+      this.updateData(formData);
+    } else {
+      await Axios({
+        url: linkBase,
+        data: formData,
+        method: "post",
+        headers: {
+          "content-type": "multipart/form-data"
+        }
       })
-      .catch(err => {
-        console.log(err);
-      });
+        .then(res => {
+          // console.log(res);
+          this.props.reGet();
+          this.clear();
+          // console.log("name", this.state.logoName);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   };
 
   clear = () => {
@@ -82,39 +78,19 @@ class ModalAdd extends Component {
     });
   };
 
-  componentDidMount() {
-    // if (this.props.coba) {
-    //   this.setState(
-    //     {
-    //       data: this.props.coba
-    //     },
-    //     () => {
-    //       console.log(this.state.data);
-    //     }
-    //   );
-    // }
-  }
-
-  // componentWillReceiveProps() {
-  //   this.setState({
-  //     data: this.props.coba
-  //   });
-  // }
-
   render() {
     return (
       <div>
         <div className="form-group">
-          {/* <button
+          <button
             type="button"
-            className={this.props.class}
+            className="btn btn-primary"
             data-toggle="modal"
             data-target="#exampleModal"
           >
-            <i className={this.props.icon} color="white"></i>
-            {this.props.textButton}
-          </button> */}
-
+            <i className="fas fa-plus" color="white"></i>
+            Tambah Company
+          </button>
           {/* Modal add*/}
           <div
             className="modal fade"
@@ -128,7 +104,7 @@ class ModalAdd extends Component {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="exampleModalLabel">
-                    Tambah {this.state.data.name}
+                    Tambah Data
                   </h5>
                   <button
                     type="button"
@@ -238,7 +214,7 @@ class ModalAdd extends Component {
                     data-dismiss="modal"
                     class="btn btn-primary"
                   >
-                    Save changes
+                    Simpan
                   </button>
                 </div>
               </div>
