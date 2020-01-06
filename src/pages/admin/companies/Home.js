@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import ModalAdd from "./ModalAdd";
-import DefaultModal from "../../component/DefaultModal";
-import SideBar from "./SideBar";
+import DefaultModal from "../../../component/DefaultModal";
+import SideBar from "../SideBar";
 import { Alert, Spinner } from "react-bootstrap";
 import ModalUpdate from "./ModalUpdate";
+import Navibar from "../Navibar";
 const linkBase = "http://localhost:5000/company/";
 class Home extends Component {
   constructor(props) {
@@ -110,48 +111,11 @@ class Home extends Component {
   };
 
   render() {
-    let no=1
+    let no = 1;
     return (
       <div>
         <div className="wrapper">
-          {/* Navbar */}
-          <nav className="main-header navbar navbar-expand navbar-white navbar-light">
-            {/* Left navbar links */}
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link" data-widget="pushmenu" href="#">
-                  <i className="fas fa-bars" />
-                </a>
-              </li>
-              <li className="nav-item d-none d-sm-inline-block">
-                <a href="index3.html" className="nav-link">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item d-none d-sm-inline-block">
-                <a href="#" className="nav-link">
-                  Contact
-                </a>
-              </li>
-            </ul>
-            {/* SEARCH FORM */}
-            <form className="form-inline ml-3">
-              <div className="input-group input-group-sm">
-                <input
-                  className="form-control form-control-navbar"
-                  type="search"
-                  placeholder="Search"
-                  aria-label="Search"
-                />
-                <div className="input-group-append">
-                  <button className="btn btn-navbar" type="submit">
-                    <i className="fas fa-search" />
-                  </button>
-                </div>
-              </div>
-            </form>
-          </nav>
-          {/* /.navbar */}
+          <Navibar />
           {/* Main Sidebar Container */}
           <SideBar />
           {/* Content Wrapper. Contains page content */}

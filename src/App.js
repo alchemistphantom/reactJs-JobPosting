@@ -10,7 +10,7 @@ import Companies from "./pages/companies/Search/Companies";
 import Login from "./pages/Auth/Login/Login";
 import Register from "./pages/Auth/Reigister/Register";
 import NotFound from "./pages/NotFound/NotFound";
-import Home from "./pages/admin/Home";
+import Home from "./pages/admin/companies/Home";
 import Admin from "./pages/admin/Admin";
 class App extends Component {
   constructor(props) {
@@ -58,34 +58,39 @@ class App extends Component {
   render() {
     return (
       <Router>
-        {/* {this.state.isLogin ? ( */}
-        <NavigationBar
-          isLogin={this.state.isLogin}
-          logoutParent={this.logout}
-        />
-        {/* ) : null} */}
-        <Switch>
-          {/* <Admin /> */}
-          <Route exact path="/admin">
-            {/* <SearchJob searchJob={this.getSearch} /> */}
-            <Home />
-          </Route>
-          <Route exact path="/">
-            <SearchJob searchJob={this.getSearch} />
-            {/* <Home /> */}
-          </Route>
-          {/* route dengan membawa id */}
-          <Route path="/detail/:id" component={Detail} />
-          <Route path="/result">
-            <ResultJob words={this.state.query} isLogin={this.state.isLogin} />
-          </Route>
-          <Route path="/company" component={Companies}></Route>
-          <Route path="/Login">
-            <Login parentLogin={this.handleLogin} />
-          </Route>
-          <Route path="/register" component={Register}></Route>
-          <Route component={NotFound} />
-        </Switch>
+        <Admin />
+
+        {this.state.isLogin ? (
+          <NavigationBar
+            isLogin={this.state.isLogin}
+            logoutParent={this.logout}
+          />
+        ) : (
+          <Switch>
+            {/* <Route exact path="/admin">
+              <SearchJob searchJob={this.getSearch} />
+              <Home />
+            </Route> */}
+            <Route exact path="/">
+              <SearchJob searchJob={this.getSearch} />
+              {/* <Home /> */}
+            </Route>
+            {/* route dengan membawa id */}
+            <Route path="/detail/:id" component={Detail} />
+            <Route path="/result">
+              <ResultJob
+                words={this.state.query}
+                isLogin={this.state.isLogin}
+              />
+            </Route>
+            <Route path="/company" component={Companies}></Route>
+            <Route path="/Login">
+              <Login parentLogin={this.handleLogin} />
+            </Route>
+            <Route path="/register" component={Register}></Route>
+            <Route component={NotFound} />
+          </Switch>
+        )}
         <Footer />
       </Router>
     );

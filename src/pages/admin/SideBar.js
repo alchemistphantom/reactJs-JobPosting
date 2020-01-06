@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class SideBar extends Component {
   // constructor(props){
@@ -31,7 +31,7 @@ class SideBar extends Component {
             </div>
             <div className="info">
               <a href="#" className="d-block">
-                Alexander Pierce
+                Jery Lenas
               </a>
             </div>
           </div>
@@ -44,7 +44,7 @@ class SideBar extends Component {
               data-accordion="false"
             >
               <li className="nav-item">
-                <a href="pages/calendar.html" className="nav-link">
+                <a href="categories" className="nav-link">
                   <i className="nav-icon fas fa-calendar-alt" />
                   <p>
                     Category
@@ -53,7 +53,7 @@ class SideBar extends Component {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="pages/gallery.html" className="nav-link">
+                <a href="companies" className="nav-link">
                   <i className="nav-icon far fa-image" />
                   <p>Company</p>
                 </a>
